@@ -13,9 +13,9 @@ return {
 					section = "projects",
 					dirs = {
 						"~/.config/nvim/",
-						"~/Projects/Coding/pt3/",
-						"~/Projects/Coding/rimcor-inspection-app/",
-						"~/Projects/Coding/talent-dynamics/",
+						"~/Projects/work/pt3/",
+						"~/Projects/work/rimcor-inspection-app/",
+						"~/Projects/work/talent-dynamics/",
 					},
 					indent = 2,
 					padding = 1,

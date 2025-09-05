@@ -8,7 +8,6 @@ return {
 		-- Just your custom keymaps — no config changes
 		vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find files" })
 		vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Live grep root" })
-		vim.keymap.set("n", "/", builtin.current_buffer_fuzzy_find, { desc = "Live grep current file" })
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 		vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "Search Neovim help" })
 		vim.keymap.set("n", "<leader>r", builtin.resume, { desc = "Resume previous search" })

@@ -1,5 +1,5 @@
 vim.keymap.set("n", "<leader>e", ":Neotree toggle dir=. <CR>", { desc = "Toggle Neotree in cwd" })
-
+vim.keymap.set("n", "/", "/", { remap = true })
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
