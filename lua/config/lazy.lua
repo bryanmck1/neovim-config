@@ -14,7 +14,8 @@ if not vim.loop.fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-
+--
+--
 vim.opt.rtp:prepend(lazypath)
 
 -- core configuration
@@ -25,6 +26,7 @@ require("config.lsps")
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
+		{ import = "plugins/themes" },
 
 		{
 			"williamboman/mason.nvim",

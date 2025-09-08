@@ -33,3 +33,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("n", "<leader>cf", function()
 	require("conform").format()
 end, { desc = "Format file using conform" })
+
+local theme_selector = require("config.themes")
+vim.keymap.set("n", "<leader>ct", theme_selector.select_theme, { desc = "Select Colorscheme" })
