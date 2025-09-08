@@ -35,4 +35,7 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
+-- Files inside of the directory_overrides directory are used to set specific options when launching neovim in certain directories
+require("config.directory_overrides.pt3")
+
 vim.cmd.colorscheme("tokyonight-storm")
