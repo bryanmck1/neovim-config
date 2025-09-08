@@ -1,25 +1,29 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+if not vim.loop.fs_stat(lazypath) then
+	local repo = "https://github.com/folke/lazy.nvim.git"
+	local result = vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--branch=stable",
+		repo,
+		lazypath,
+	})
 	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
+		vim.api.nvim_err_writeln("Failed to clone lazy.nvim:\n" .. result)
 		os.exit(1)
 	end
 end
+
 vim.opt.rtp:prepend(lazypath)
 
+-- core configuration
 require("config.options")
+require("config.keymaps")
+require("config.lsps")
 
--- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- import your plugins
 		{ import = "plugins" },
 
 		{
@@ -27,14 +31,8 @@ require("lazy").setup({
 			opts = {},
 		},
 	},
-	-- Configure any other settings here. See the documentation for more details.
-	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "tokyonight-storm" } },
-	-- automatically check for plugin updates
 	checker = { enabled = true },
 })
-
-require("config.keymaps")
--- require("config.lsps")
 
 vim.cmd.colorscheme("tokyonight-storm")
