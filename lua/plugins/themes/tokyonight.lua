@@ -7,4 +7,5 @@ return {
 		transparent = false,
 		terminal_colors = true,
 	},
+	themes = { "tokyonight-storm" },
 }

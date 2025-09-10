@@ -14,8 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
---
---
+
 vim.opt.rtp:prepend(lazypath)
 
 -- core configuration
@@ -23,19 +22,18 @@ require("config.options")
 require("config.keymaps")
 require("config.lsps")
 
-local current_theme = require("config.current_theme")
+local themes = require("config.themes")
 
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 		{ import = "plugins/themes" },
-		{ "williamboman/mason.nvim", opts = {} },
 	},
-	install = { colorscheme = { current_theme.theme } },
+	install = { colorscheme = { themes.theme } },
 	checker = { enabled = true },
 })
 
--- Files inside of the directory_overrides directory are used to set specific options when launching neovim in certain directories
+-- Directory-specific overrides
 require("config.directory_overrides.pt3")
 
-vim.cmd.colorscheme(current_theme.theme)
+vim.cmd.colorscheme(themes.theme)
