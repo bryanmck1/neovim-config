@@ -1,6 +1,5 @@
--- Config for enabling toggling through the available theme plugins installed in /plugins/themes/
-
 local M = {}
+local current_theme = require("config.current_theme") -- handles persistence
 
 -- All available themes and variants
 M.themes = {
@@ -33,11 +32,13 @@ function M.select_theme()
 			},
 
 			attach_mappings = function(prompt_bufnr, map)
-				-- Helper: preview the currently selected theme
+				-- Helper: preview the currently selected theme and save it
 				local function preview_theme()
 					local selection = action_state.get_selected_entry()
 					if selection then
-						vim.cmd.colorscheme(selection[1])
+						local theme_name = selection[1]
+						vim.cmd.colorscheme(theme_name)
+						current_theme.set_theme(theme_name) -- persist on preview
 					end
 				end
 
@@ -58,8 +59,10 @@ function M.select_theme()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
 					if selection then
-						vim.notify("Selected colorscheme: " .. selection[1])
-						vim.cmd.colorscheme(selection[1])
+						local theme_name = selection[1]
+						vim.notify("Selected colorscheme: " .. theme_name)
+						vim.cmd.colorscheme(theme_name)
+						current_theme.set_theme(theme_name) -- persist on confirm
 					end
 				end)
 

@@ -23,21 +23,19 @@ require("config.options")
 require("config.keymaps")
 require("config.lsps")
 
+local current_theme = require("config.current_theme")
+
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 		{ import = "plugins/themes" },
-
-		{
-			"williamboman/mason.nvim",
-			opts = {},
-		},
+		{ "williamboman/mason.nvim", opts = {} },
 	},
-	install = { colorscheme = { "tokyonight-storm" } },
+	install = { colorscheme = { current_theme.theme } },
 	checker = { enabled = true },
 })
 
 -- Files inside of the directory_overrides directory are used to set specific options when launching neovim in certain directories
 require("config.directory_overrides.pt3")
 
-vim.cmd.colorscheme("tokyonight-storm")
+vim.cmd.colorscheme(current_theme.theme)
